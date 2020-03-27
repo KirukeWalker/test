@@ -152,13 +152,16 @@ function init() {
                                                 }
 
                                                 for (var k = 0; k < 4; k++) {
-
-                                                    var tempVector = new THREE.Vector4(vector.x, vector.y, vector.z);
+                                                    if (geometry.morphTargets !== 'undefined') {
+                                                        var tempVector = new THREE.Vector4(morphVector.x, morphVector.y, morphVector.z);
+                                                    } else {
+                                                        var tempVector = new THREE.Vector4(vector.x, vector.y, vector.z);
+                                                    }                                                    
+                                                    
                                                     tempVector.multiplyScalar(weights[k]);
                                                     //the inverse takes the vector into local bone space
-                                                    tempVector.applyMatrix4(inverses[k])
-                                                    //which is then transformed to the appropriate world space
-                                                        .applyMatrix4(skinMatrices[k]);
+													//which is then transformed to the appropriate world space
+                                                    tempVector.applyMatrix4(inverses[k]).applyMatrix4(skinMatrices[k]);
                                                     finalVector.add(tempVector);
 
                                                 }
