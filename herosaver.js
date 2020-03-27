@@ -32,15 +32,16 @@ function init() {
                             var mesh = object;
 
                             if(geometry instanceof RK.BufferGeometry){
-                                var oldgeometry = geometry.clone();
+								//Get pose from skeleton
+                                var bufferGeometry = geometry.clone();
                                 geometry = new RK.Geometry().fromBufferGeometry(geometry);
-                                var skinIndex = oldgeometry.getAttribute('skinIndex');
-                                var skinWeight = oldgeometry.getAttribute('skinWeight');
-                                var morphTarget = oldgeometry.getAttribute('morphTarget0');
+                                var skinIndex = bufferGeometry.getAttribute('skinIndex0');
+                                var skinWeight = bufferGeometry.getAttribute('skinWeight0');
+                                var morphTarget = bufferGeometry.getAttribute('morphTarget0');
                                 var mtcount = 0;
                                 while(typeof morphTarget !== 'undefined') {
                                     mtcount++;
-                                    morphTarget = oldgeometry.getAttribute('morphTarget' + mtcount);
+                                    morphTarget = bufferGeometry.getAttribute('morphTarget' + mtcount);
                                 }
                                 if(typeof skinIndex !== 'undefined') {
                                     geometry.skinIndices = [];
@@ -56,9 +57,9 @@ function init() {
                                         for(var j = 0; j < mtcount; j++) {
                                             geometry.morphTargets[j].vertices.push((
                                                 new THREE.Vector3(
-                                                    oldgeometry.getAttribute('morphTarget' + j).getX(i),
-                                                    oldgeometry.getAttribute('morphTarget' + j).getY(i),
-                                                    oldgeometry.getAttribute('morphTarget' + j).getZ(i)
+                                                    bufferGeometry.getAttribute('morphTarget' + j).getX(i),
+                                                    bufferGeometry.getAttribute('morphTarget' + j).getY(i),
+                                                    bufferGeometry.getAttribute('morphTarget' + j).getZ(i)
                                                 )
                                             ));
                                         }
