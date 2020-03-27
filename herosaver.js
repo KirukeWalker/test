@@ -9,7 +9,7 @@ function init() {
 
     RK.STLExporter.prototype = {
 
-        constructor: THREE.STLExporter,
+        constructor:  RK.STLExporter,
 
         parse: ( function () {
 
