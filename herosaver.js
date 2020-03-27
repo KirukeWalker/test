@@ -59,7 +59,7 @@ function init() {
                                                     bufferGeometry.getAttribute('morphTarget' + j).getX(i),	
                                                     bufferGeometry.getAttribute('morphTarget' + j).getY(i),	
                                                     bufferGeometry.getAttribute('morphTarget' + j).getZ(i)	
-                                                ))).fromBufferAttribute(oldgeometry.getAttribute('morphTarget' + j)));
+                                                )).fromBufferAttribute(oldgeometry.getAttribute('morphTarget' + j)));
                                         }
                                     }
                                 }
