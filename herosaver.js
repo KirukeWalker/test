@@ -133,7 +133,7 @@ function init() {
 
                                                 var finalVector = new THREE.Vector4();
 
-                                                if (geometry.morphTargets !== 'undefined') {
+                                                if (mesh.geometry.morphTargets !== 'undefined') {
 
                                                     var morphVector = new THREE.Vector4(vector.x, vector.y, vector.z);
 
