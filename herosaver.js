@@ -300,8 +300,8 @@ function inject_script(url, callback) {
   head.appendChild(script);
 }
 
-inject_script("//code.jquery.com/jquery-3.3.1.min.js", function () {
-    inject_script("//cdnjs.cloudflare.com/ajax/libs/three.js/100/three.js", function () { init() })
+inject_script("//code.jquery.com/jquery-3.3.1.js", function () {
+    inject_script("//cdnjs.cloudflare.com/ajax/libs/three.js/108/three.js", function () { init() })
 });
 
 function download_stl(object){
