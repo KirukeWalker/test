@@ -9,7 +9,7 @@ function init() {
 
     RK.STLExporter.prototype = {
 
-        constructor:  RK.STLExporter,
+        constructor: RK.STLExporter,
 
         parse: ( function () {
 
@@ -187,13 +187,13 @@ function init() {
     }
 
     var model = CK.character;
-	var characterArea_hook = ".headerMenu-trigger-label";
-	var menu_style = {"margin-left": "20px", "font-size": "1.4em", "color" : "rgba(255, 255, 255, 0.8)", "cursor" : "pointer" };
-	
+	var characterArea_hook = ".content-side:first";
+	var menu_style = {"margin-left": "20px", "font-size": "1.2em", "cursor" : "pointer" };
+	    
 	var character_area, stl, stl_base, sjson, ljson, labeljson;
 	
 	stl = 				jQuery("<a />").css(menu_style).text("Export Figure");
-	stl_base = 			jQuery("<a />").css(menu_style).text("Export Model (STL)");
+	stl_base = 			jQuery("<a />").css(menu_style).css({"margin-left": "125px"}).text("Export Model (STL)");
 	sjson = 			jQuery("<a />").css(menu_style).text("Export (JSON)");
 	ljson  = 			jQuery("<input/>").attr({"type": "file", "id": "ljson"}).css({"display":"none"}).text("Import (JSON)");
 	labeljson  = 		jQuery("<label/>").attr({"for": "ljson"}).css(menu_style).text("Import (JSON)");
