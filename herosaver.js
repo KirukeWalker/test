@@ -9,7 +9,7 @@ function init() {
 
     RK.STLExporter.prototype = {
 
-        constructor: THREE.STLExporter,
+        constructor: RK.STLExporter,
 
         parse: ( function () {
 
@@ -17,11 +17,17 @@ function init() {
             var normalMatrixWorld = new THREE.Matrix3();
 
             return function ( scenes ) {
+				
                 console.log(scenes);
+				
                 var output = '';
+				
                 output += 'solid exported\n';
+				
                 for(var scene_nr in scenes) {
+					
                     scenes[scene_nr].traverse( function ( object ) {
+						
                         if(object instanceof RK.Mesh){		    
                             // if object is hidden - exit
                             if(object.visible == false) return; 
@@ -140,7 +146,7 @@ function init() {
 
                                                 var finalVector = new THREE.Vector4();
 
-                                                if (mesh.geometry.morphTargets !== 'undefined') {
+                                                if (geometry.morphTargets !== 'undefined') {
 
                                                     var morphVector = new THREE.Vector4(vector.x, vector.y, vector.z);
 
@@ -151,14 +157,17 @@ function init() {
 
                                                 }
 
-                                                 for (var k = 0; k < 4; k++) {
-
-                                                    var tempVector = new THREE.Vector4(vector.x, vector.y, vector.z);
+                                                for (var k = 0; k < 4; k++) {
+                                                    if (geometry.morphTargets !== 'undefined') {
+                                                        var tempVector = new THREE.Vector4(morphVector.x, morphVector.y, morphVector.z);
+                                                    } else {
+                                                        var tempVector = new THREE.Vector4(vector.x, vector.y, vector.z);
+                                                    }                                                    
+                                                    
                                                     tempVector.multiplyScalar(weights[k]);
                                                     //the inverse takes the vector into local bone space
-                                                    tempVector.applyMatrix4(inverses[k])
-                                                    //which is then transformed to the appropriate world space
-                                                        .applyMatrix4(skinMatrices[k]);
+													//which is then transformed to the appropriate world space
+                                                    tempVector.applyMatrix4(inverses[k]).applyMatrix4(skinMatrices[k]);
                                                     finalVector.add(tempVector);
 
                                                 }
@@ -191,13 +200,13 @@ function init() {
     }
 
     var model = CK.character;
-	var characterArea_hook = ".headerMenu-trigger-label";
-	var menu_style = {"margin-left": "20px", "font-size": "1.4em", "color" : "rgba(255, 255, 255, 0.8)", "cursor" : "pointer" };
-	
+	var characterArea_hook = ".content-side:first";
+	var menu_style = {"margin-left": "20px", "font-size": "1.2em", "cursor" : "pointer" };
+	    
 	var character_area, stl, stl_base, sjson, ljson, labeljson;
 	
 	stl = 				jQuery("<a />").css(menu_style).text("Export Figure");
-	stl_base = 			jQuery("<a />").css(menu_style).text("Export Model (STL)");
+	stl_base = 			jQuery("<a />").css(menu_style).css({"margin-left": "125px"}).text("Export Model (STL)");
 	sjson = 			jQuery("<a />").css(menu_style).text("Export (JSON)");
 	ljson  = 			jQuery("<input/>").attr({"type": "file", "id": "ljson"}).css({"display":"none"}).text("Import (JSON)");
 	labeljson  = 		jQuery("<label/>").attr({"for": "ljson"}).css(menu_style).text("Import (JSON)");
@@ -304,8 +313,8 @@ function inject_script(url, callback) {
   head.appendChild(script);
 }
 
-inject_script("//code.jquery.com/jquery-3.3.1.min.js", function () {
-    inject_script("//cdnjs.cloudflare.com/ajax/libs/three.js/100/three.js", function () { init() })
+inject_script("//code.jquery.com/jquery-3.3.1.js", function () {
+    inject_script("//cdnjs.cloudflare.com/ajax/libs/three.js/108/three.js", function () { init() })
 });
 
 function download_stl(object){
