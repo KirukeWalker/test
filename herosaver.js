@@ -35,7 +35,7 @@ function init() {
                                 var oldgeometry = geometry.clone();
                                 geometry = new RK.Geometry().fromBufferGeometry(geometry);
                                 var skinIndex = oldgeometry.getAttribute('skinIndex');
-                                var skinWeight = oldgeometry.getAttribute('skinWeight');
+                                var skinWeight = oldgeometry.getAttribute('skinWeight1');
                                 var morphTarget = oldgeometry.getAttribute('morphTarget0');
                                 var mtcount = 0;
                                 while(typeof morphTarget !== 'undefined') {
