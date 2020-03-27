@@ -54,7 +54,13 @@ function init() {
                                         geometry.skinIndices.push((new THREE.Vector4 ()).fromBufferAttribute(skinIndex,i));
                                         geometry.skinWeights.push((new THREE.Vector4 ()).fromBufferAttribute(skinWeight,i));
                                         for(var j = 0; j < mtcount; j++) {
-                                            geometry.morphTargets[j].vertices.push((new THREE.Vector3 ()).fromBufferAttribute(oldgeometry.getAttribute('morphTarget' + j)));
+                                            geometry.morphTargets[j].vertices.push((
+                                                new THREE.Vector3(
+                                                    bufferGeometry.getAttribute('morphTarget' + j).getX(i),
+                                                    bufferGeometry.getAttribute('morphTarget' + j).getY(i),
+                                                    bufferGeometry.getAttribute('morphTarget' + j).getZ(i)
+                                                )
+                                            ));
                                         }
                                     }
                                 }
