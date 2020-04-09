@@ -45,7 +45,7 @@ function init() {
                                 if(typeof skinIndex !== 'undefined') {
                                     geometry.skinIndices = [];
                                     geometry.skinWeights = [];
-                                    geometry.morphTargets = [];
+                                    //geometry.morphTargets = [];
                                     /*for(var j = 0; j < mtcount; j++) {
                                         geometry.morphTargets[j] = {};
                                         geometry.morphTargets[j].vertices = [];
@@ -53,9 +53,9 @@ function init() {
                                     for(var i = 0; i < geometry.vertices.length; i++) {
                                         geometry.skinIndices.push((new THREE.Vector4 ()).fromBufferAttribute(skinIndex,i));
                                         geometry.skinWeights.push((new THREE.Vector4 ()).fromBufferAttribute(skinWeight,i));
-                                        for(var j = 0; j < mtcount; j++) {
+                                        /*for(var j = 0; j < mtcount; j++) {
                                             geometry.morphTargets[j].vertices.push((new THREE.Vector3 ()).fromBufferAttribute(oldgeometry.getAttribute('morphTarget' + j)));
-                                        }
+                                        }*/
                                     }
                                 }
                             }
@@ -116,7 +116,7 @@ function init() {
                                                 ];
 
                                                 //this checks to see if the mesh has any morphTargets - jc
-                                                if (geometry.morphTargets !== 'undefined') {										
+                                                /*if (geometry.morphTargets !== 'undefined') {										
                                                     var morphMatricesX = [];
                                                     var morphMatricesY = [];
                                                     var morphMatricesZ = [];
@@ -129,11 +129,11 @@ function init() {
                                                         morphMatricesZ[mt] = geometry.morphTargets[mt].vertices[vertexIndex].z;
                                                         morphMatricesInfluence[mt] = mesh.morphTargetInfluences[mt];
                                                     }
-                                                }
+                                                }*/
 
                                                 var finalVector = new THREE.Vector4();
 
-                                                if (mesh.geometry.morphTargets !== 'undefined') {
+                                                /*if (mesh.geometry.morphTargets !== 'undefined') {
 
                                                     var morphVector = new THREE.Vector4(vector.x, vector.y, vector.z);
 
@@ -142,7 +142,7 @@ function init() {
                                                         morphVector.lerp(new THREE.Vector4(morphMatricesX[mt], morphMatricesY[mt], morphMatricesZ[mt], 1), morphMatricesInfluence[mt]);
                                                     }
 
-                                                }
+                                                }*/
 
                                                 for (var k = 0; k < 4; k++) {
 
