@@ -46,10 +46,10 @@ function init() {
                                     geometry.skinIndices = [];
                                     geometry.skinWeights = [];
                                     geometry.morphTargets = [];
-                                    for(var j = 0; j < mtcount; j++) {
+                                    /*for(var j = 0; j < mtcount; j++) {
                                         geometry.morphTargets[j] = {};
                                         geometry.morphTargets[j].vertices = [];
-                                    }
+                                    }*/
                                     for(var i = 0; i < geometry.vertices.length; i++) {
                                         geometry.skinIndices.push((new THREE.Vector4 ()).fromBufferAttribute(skinIndex,i));
                                         geometry.skinWeights.push((new THREE.Vector4 ()).fromBufferAttribute(skinWeight,i));
